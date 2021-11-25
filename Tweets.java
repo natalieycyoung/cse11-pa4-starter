@@ -1,6 +1,7 @@
 /**
+ * Programming Assignment 4
+ *
  * @author Natalie Young
- * 
  * @since 2021-10-26
  */
 
@@ -13,7 +14,32 @@ interface Tweet
 }
 
 class User
-{}
+{
+	String userName; 
+	String displayName;		// also called full name
+	int numberOfFollowers;
+
+	// Constructor takes a value for each field and initializes it
+	User(String userName, String displayName, int numberOfFollowers)
+	{
+		this.userName = userName;
+		this.displayName = displayName;
+		this.numberOfFollowers = numberOfFollowers;
+	}
+	
+	/**
+	 * Returns string that contains fullname followed by space and
+	 * at-symbol before username
+	 *
+	 * @return text
+	 */
+	String toText()
+	{
+		String text = displayName + " @" + userName;
+
+		return text;
+	}
+}
 
 class TextTweet implements Tweet
 {
@@ -51,20 +77,23 @@ class TextTweet implements Tweet
 	/**
 	 * Returns username of author of this TextTweet
 	 *
-	 * @return author
+	 * @return this.author.userName
 	 */
 	public String allAuthors()
 	{
-		return this.author;
+		return this.author.userName;
 	}
 
 	/**
 	 * Returns true when given text is in contents of this TextTweet;
 	 * false otherwise
 	 *
+	 * @param text
+	 * @return boolean
 	 */
 	public boolean textAppearsOnThread(String text)
 	{
+		return this.contents.contains(text);
 	}
 }
 
@@ -79,8 +108,10 @@ class ReplyTweet implements Tweet
 	 * Returns true if replyTo of this ReplyTweet is the given Tweet
 	 * as compared by ==
 	 */
-	public boolean isReplyTo()
-	{}
+	public boolean isReplyTo(Tweet other)
+	{
+		return replyTo == other;
+	}
 
 	/**
 	 * Returns total number of likes on this ReplyTweet object PLUS
