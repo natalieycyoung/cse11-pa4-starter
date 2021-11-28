@@ -17,7 +17,7 @@ interface Number
 	public double toDouble();
 }
 
-class WholeNumber //implements Number
+class WholeNumber implements Number
 {
 	int n;
 
@@ -31,7 +31,7 @@ class WholeNumber //implements Number
 	 *
 	 * @return n
 	 */
-	int numerator()
+	public int numerator()
 	{
 		return this.n;
 	}
@@ -39,7 +39,7 @@ class WholeNumber //implements Number
 	/**
 	 * Returns 1
 	 */
-	int denominator()
+	public int denominator()
 	{
 		return 1;
 	}
@@ -49,12 +49,30 @@ class WholeNumber //implements Number
 	 * to the one provided as an argument (could be either a
 	 * Fraction or WholeNumber).
 	 *
-	 * @return newNumber
+	 * @return sum
 	 */
-//	Number add(Number other)
+	public Number add(Number other)
 	{
-		//TODO
-//		return newNumber;
+		int sumNum = 0;
+		int sumDenom = 1;
+		Number sum;
+
+		if (other.denominator() == 1)
+		{
+			sumNum = this.numerator() + other.numerator();
+
+			sum = new WholeNumber(sumNum);
+		}
+		else
+		{
+			sumNum = (this.numerator() * other.denominator())
+				+ (this.denominator() * other.numerator());
+			sumDenom = this.denominator() * other.denominator();
+
+			sum = new Fraction(sumNum,sumDenom);
+		}
+
+		return sum;
 	}
 
 	/**
@@ -64,17 +82,28 @@ class WholeNumber //implements Number
 	 *
 	 * @return newNumber
 	 */
-//	Number multiply(Number other)
+	public Number multiply(Number other)
 	{
-		//TODO
-//		Number newNumber = new Number
-//		return newNumber;
+		int prodNum = this.numerator() * other.numerator();
+		int prodDenom = this.denominator() * other.denominator();
+		Number product;
+
+		if (prodDenom == 1)
+		{
+			product = new WholeNumber(prodNum);
+		}
+		else
+		{
+			product = new Fraction(prodNum,prodDenom);
+		}
+
+		return product;
 	}
 
 	/**
 	 * Returns value of n as String
 	 */
-	String toText()
+	public String toText()
 	{
 		return String.valueOf(n);
 	}
@@ -82,7 +111,7 @@ class WholeNumber //implements Number
 	/**
 	 * Casts int n to double
 	 */
-	double toDouble()
+	public double toDouble()
 	{
 		return (double)n;
 	}
@@ -124,22 +153,22 @@ class Fraction implements Number
 	 */
 	public Number add(Number other)
 	{
-		int newNum = 0;
-		int newDenom = 1;
+		int sumNum = 0;
+		int sumDenom = 1;
 
 		if (this.denominator() == other.denominator())
 		{
-			newNum = this.numerator() + other.numerator();
-			newDenom = this.denominator();
+			sumNum = this.numerator() + other.numerator();
+			sumDenom = this.denominator();
 		}
 		else
 		{
-			newNum = (this.numerator() * other.denominator())
+			sumNum = (this.numerator() * other.denominator())
 				+ (this.denominator() * other.numerator());
-			newDenom = this.denominator() * other.denominator();
+			sumDenom = this.denominator() * other.denominator();
 		}
 
-		Number sum = new Fraction(newNum,newDenom);
+		Number sum = new Fraction(sumNum,sumDenom);
 
 		return sum;
 	}
@@ -153,10 +182,10 @@ class Fraction implements Number
 	 */
 	public Number multiply(Number other)
 	{
-		int newNum = this.numerator() * other.numerator();
-		int newDenom = this.numerator() * other.denominator();
+		int prodNum = this.numerator() * other.numerator();
+		int prodDenom = this.numerator() * other.denominator();
 
-		Number product = new Fraction(newNum,newDenom);
+		Number product = new Fraction(prodNum,prodDenom);
 
 		return product;
 	}
