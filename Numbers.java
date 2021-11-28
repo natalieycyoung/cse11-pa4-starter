@@ -185,7 +185,7 @@ class Fraction implements Number
 	public Number multiply(Number other)
 	{
 		int prodNum = this.numerator() * other.numerator();
-		int prodDenom = this.numerator() * other.denominator();
+		int prodDenom = this.denominator() * other.denominator();
 
 		Number product = new Fraction(prodNum,prodDenom);
 
@@ -206,7 +206,10 @@ class Fraction implements Number
 	 */
 	public double toDouble()
 	{
-		return (double)n/(double)d;
+		double n = this.n;
+		double d = this.d;
+
+		return n/d;
 	}
 }
 
@@ -247,10 +250,19 @@ class ExamplesNumbers
 
 
 	// EXPLORATION
-/*	
-	public static void main(String args[])
+
+	Number oneTenth = new Fraction(1,10);
+	Number twoTenths = new Fraction(2,10);
+	Number threeTenths = new Fraction(3,10);
+
+/*	void testToDouble(Tester t)
 	{
-		
+		t.checkExpect(this.oneTenth.add(twoTenths).add(threeTenths).toDouble(), 0.6);
 	}
 */
+	double explor1 = oneTenth.add(twoTenths).add(threeTenths).toDouble();
+	double explor2 = oneTenth.add(twoTenths.add(threeTenths)).toDouble();
+	String explor3 = oneTenth.add(twoTenths).add(threeTenths).toText();
+	String explor4 = oneTenth.add(twoTenths.add(threeTenths)).toText();
+
 }
