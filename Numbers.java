@@ -50,6 +50,7 @@ class WholeNumber implements Number
 	 * to the one provided as an argument (could be either a
 	 * Fraction or WholeNumber).
 	 *
+	 * @param other
 	 * @return sum
 	 */
 	public Number add(Number other)
@@ -81,7 +82,8 @@ class WholeNumber implements Number
 	 * WholeNumber to the one provided as argument (could be either
 	 * Fraction or WholeNumber)
 	 *
-	 * @return newNumber
+	 * @param other
+	 * @return product
 	 */
 	public Number multiply(Number other)
 	{
@@ -110,12 +112,11 @@ class WholeNumber implements Number
 	}
 
 	/**
-	 * Casts int n to double
+	 * Returns int n casted to double
 	 */
 	public double toDouble()
 	{
-	//	double n = this.n;
-		return (double)n;
+		return (double)this.n;
 	}
 }
 
