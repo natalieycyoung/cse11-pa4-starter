@@ -158,29 +158,66 @@ class ReplyTweet implements Tweet
 	}
 }
 
-class TweetsExample
+class ExamplesTweets
 {
 	User joe = new User("joepolitz", "Joe Gibbs Politz", 999);
 	User greg = new User("gregory_miranda", "Greg Miranda", 9999);
 	User rachel = new User("Rachel__Lim", "Rachel Lim", 1000000);
-	Tweet t1 = new TextTweet(this.joe, "Java 17 has a cool feature called records", 77);
-	Tweet t2 = new ReplyTweet(this.greg, "Hmm I wonder if we could use it for CSE11", 12, this.t1);
-	Tweet t3 = new ReplyTweet(this.greg, "Thought about this more, probably not yet, too new.", 73, this.t2);
-	Tweet t4 = new ReplyTweet(this.joe, "Yeah, good point. Maybe in 2022.", 10, this.t3);
-	Tweet t5 = new ReplyTweet(this.rachel, "Yeah... I don't want to rewrite the book right this minute", 1005, this.t2);
 
+	Tweet t1 = new TextTweet(
+			this.joe, "Java 17 has a cool feature called records", 77);
+	Tweet t2 = new ReplyTweet(
+			this.greg, "Hmm I wonder if we could use it for CSE11", 12, this.t1);
+	Tweet t3 = new ReplyTweet(
+			this.greg, "Thought about this more, probably not yet, too new.", 73, this.t2);
+	Tweet t4 = new ReplyTweet(
+			this.joe, "Yeah, good point. Maybe in 2022.", 10, this.t3);
+	Tweet t5 = new ReplyTweet(
+			this.rachel, "Yeah... I don't want to rewrite the book right this minute", 1005, this.t2);
+
+	// ADDITIONAL TESTING
+	User jack = new User("jack", "Jack Dorsey", 4000000);
+	User jon = new User("DesignUXUI", "Jonathan Shariat", 18700);
+	User andi = new User("andigalpern", "Andi Galpern", 8016);
+	User king = new User("Dejjiiii", "King.", 1733);
+	User calamar = new User("ThatSquidYT", "ese calamar", 466);
+	
+	// https://twitter.com/jack/status/20/
+	Tweet tweet1 = new TextTweet(
+			jack, "just setting up my twttr", 171700);
+	// https://twitter.com/DesignUXUI/status/398524856527896576
+	Tweet tweet2 = new ReplyTweet(
+			jon, "Wow just over 6 years ago @jack wrote this...", 7, tweet1);
+	// https://twitter.com/andigalpern/status/976481974268305408
+	Tweet tweet3 = new ReplyTweet(
+			andi, "Now 12 years ago!", 20, tweet2);
+	// https://twitter.com/Dejjiiii/status/1237428935949942785
+	Tweet tweet4 = new ReplyTweet(
+			king, "Now 14.", 7, tweet3);
+	// https://twitter.com/ThatSquidYT/status/1294923934471581697
+	Tweet tweet5 = new ReplyTweet(
+			calamar, "14 and a half.", 0, tweet4);
+		
 	void testIsReplyTo(Tester t) {
 		t.checkExpect(this.t1.isReplyTo(this.t2), false);
 		t.checkExpect(this.t2.isReplyTo(this.t1), true);
 		t.checkExpect(this.t5.isReplyTo(this.t2), true);
 		t.checkExpect(this.t2.isReplyTo(this.t2), false);
 		t.checkExpect(this.t4.isReplyTo(this.t3), true);
+
+		// additional testing
+		t.checkExpect(this.tweet1.isReplyTo(this.tweet1), false);
+		t.checkExpect(this.tweet5.isReplyTo(this.tweet1), false);
 	}
 
 	void testTotalLikes(Tester t) {
 		t.checkExpect(this.t5.totalLikes(), 1005 + 12 + 77);
 		t.checkExpect(this.t4.totalLikes(), 10 + 73 + 12 + 77);
 		t.checkExpect(this.t1.totalLikes(), 77);
+
+		// additional testing
+		t.checkExpect(this.tweet4.totalLikes(), 171700 + 7 + 20 + 7);
+		t.checkExpect(this.tweet5.totalLikes(), 171700 + 7 + 20 + 7 + 0);
 	}
 
 	void testAllAuthors(Tester t) {
@@ -188,6 +225,10 @@ class TweetsExample
 		t.checkExpect(this.t2.allAuthors(), "gregory_miranda;joepolitz");
 		t.checkExpect(this.t3.allAuthors(), "gregory_miranda;gregory_miranda;joepolitz");
 		t.checkExpect(this.t5.allAuthors(), "Rachel__Lim;gregory_miranda;joepolitz");
+
+		// additional testing
+		t.checkExpect(this.tweet3.allAuthors(), "andigalpern;DesignUXUI;jack");
+		t.checkExpect(this.tweet5.allAuthors(), "ThatSquidYT;Dejjiiii;andigalpern;DesignUXUI;jack");
 	}
 
 	void testTextAppearsOnThread(Tester t) {
@@ -198,5 +239,9 @@ class TweetsExample
 		t.checkExpect(this.t4.textAppearsOnThread("Java"), true);
 		t.checkExpect(this.t4.textAppearsOnThread("rewrite"), false);
 		t.checkExpect(this.t4.textAppearsOnThread("2022"), true);
+
+		// additional testing
+		t.checkExpect(this.tweet1.textAppearsOnThread(""), true);
+		t.checkExpect(this.tweet2.textAppearsOnThread("@"), true);
 	}
 }
