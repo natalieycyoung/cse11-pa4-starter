@@ -1,0 +1,43 @@
+nyoung@LAPTOP-SV5IGG6N ~/CSE11/cse11-pa4-starter
+$ ./run.bat ExamplesNumbers
+Tester Library v.3.0
+-----------------------------------
+Tests defined in the class: ExamplesNumbers:
+---------------------------
+ExamplesNumbers:
+---------------
+new ExamplesNumbers:1(
+ this.n1 = new WholeNumber:2(
+  this.n = 5)
+ this.n2 = new WholeNumber:3(
+  this.n = 7)
+ this.n3 = new Fraction:4(
+  this.n = 7
+  this.d = 2)
+ this.n4 = new Fraction:5(
+  this.n = 1
+  this.d = 2)
+ this.oneTenth = new Fraction:6(
+  this.n = 1
+  this.d = 10)
+ this.twoTenths = new Fraction:7(
+  this.n = 2
+  this.d = 10)
+ this.threeTenths = new Fraction:8(
+  this.n = 3
+  this.d = 10)
+ this.explor1 = 0.6
+ this.explor2 = 0.6
+ this.explor3 = "6/10"
+ this.explor4 = "6/10")
+---------------
+
+Ran 12 tests.
+All tests passed.
+
+--- END OF TEST RESULTS ---
+WARNING: A terminally deprecated method in java.lang.System has been called
+WARNING: System::setSecurityManager has been called by tester.Main (file:/C:/Users/nyoung/UCSD/CSE11/cse11-pa4-starter/lib/tester.jar)
+WARNING: Please consider reporting this to the maintainers of tester.Main
+WARNING: System::setSecurityManager will be removed in a future release
+

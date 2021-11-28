@@ -175,6 +175,43 @@ class ExamplesTweets
 	Tweet t5 = new ReplyTweet(
 			this.rachel, "Yeah... I don't want to rewrite the book right this minute", 1005, this.t2);
 
+		
+	void testIsReplyTo(Tester t)
+	{
+		t.checkExpect(this.t1.isReplyTo(this.t2), false);
+		t.checkExpect(this.t2.isReplyTo(this.t1), true);
+		t.checkExpect(this.t5.isReplyTo(this.t2), true);
+		t.checkExpect(this.t2.isReplyTo(this.t2), false);
+		t.checkExpect(this.t4.isReplyTo(this.t3), true);
+	}
+
+	void testTotalLikes(Tester t)
+	{
+		t.checkExpect(this.t5.totalLikes(), 1005 + 12 + 77);
+		t.checkExpect(this.t4.totalLikes(), 10 + 73 + 12 + 77);
+		t.checkExpect(this.t1.totalLikes(), 77);
+	}
+
+	void testAllAuthors(Tester t)
+	{
+		t.checkExpect(this.t1.allAuthors(), "joepolitz");
+		t.checkExpect(this.t2.allAuthors(), "gregory_miranda;joepolitz");
+		t.checkExpect(this.t3.allAuthors(), "gregory_miranda;gregory_miranda;joepolitz");
+		t.checkExpect(this.t5.allAuthors(), "Rachel__Lim;gregory_miranda;joepolitz");
+	}
+
+	void testTextAppearsOnThread(Tester t)
+	{
+		t.checkExpect(this.t1.textAppearsOnThread("joepolitz"), false);
+		t.checkExpect(this.t1.textAppearsOnThread("2022"), false);
+		t.checkExpect(this.t1.textAppearsOnThread("cool"), true);
+		t.checkExpect(this.t4.textAppearsOnThread("wonder"), true);
+		t.checkExpect(this.t4.textAppearsOnThread("Java"), true);
+		t.checkExpect(this.t4.textAppearsOnThread("rewrite"), false);
+		t.checkExpect(this.t4.textAppearsOnThread("2022"), true);
+	}
+
+
 	// ADDITIONAL TESTING
 	User jack = new User("jack", "Jack Dorsey", 4000000);
 	User jon = new User("DesignUXUI", "Jonathan Shariat", 18700);
@@ -197,50 +234,23 @@ class ExamplesTweets
 	// https://twitter.com/ThatSquidYT/status/1294923934471581697
 	Tweet tweet5 = new ReplyTweet(
 			calamar, "14 and a half.", 0, tweet4);
-		
-	void testIsReplyTo(Tester t) {
-		t.checkExpect(this.t1.isReplyTo(this.t2), false);
-		t.checkExpect(this.t2.isReplyTo(this.t1), true);
-		t.checkExpect(this.t5.isReplyTo(this.t2), true);
-		t.checkExpect(this.t2.isReplyTo(this.t2), false);
-		t.checkExpect(this.t4.isReplyTo(this.t3), true);
 
-		// additional testing
+	void testsAdditional(Tester t)
+	{
+		// isReplyTo
 		t.checkExpect(this.tweet1.isReplyTo(this.tweet1), false);
 		t.checkExpect(this.tweet5.isReplyTo(this.tweet1), false);
-	}
 
-	void testTotalLikes(Tester t) {
-		t.checkExpect(this.t5.totalLikes(), 1005 + 12 + 77);
-		t.checkExpect(this.t4.totalLikes(), 10 + 73 + 12 + 77);
-		t.checkExpect(this.t1.totalLikes(), 77);
 
-		// additional testing
+		// totalLikes
 		t.checkExpect(this.tweet4.totalLikes(), 171700 + 7 + 20 + 7);
 		t.checkExpect(this.tweet5.totalLikes(), 171700 + 7 + 20 + 7 + 0);
-	}
 
-	void testAllAuthors(Tester t) {
-		t.checkExpect(this.t1.allAuthors(), "joepolitz");
-		t.checkExpect(this.t2.allAuthors(), "gregory_miranda;joepolitz");
-		t.checkExpect(this.t3.allAuthors(), "gregory_miranda;gregory_miranda;joepolitz");
-		t.checkExpect(this.t5.allAuthors(), "Rachel__Lim;gregory_miranda;joepolitz");
-
-		// additional testing
+		// allAuthors
 		t.checkExpect(this.tweet3.allAuthors(), "andigalpern;DesignUXUI;jack");
 		t.checkExpect(this.tweet5.allAuthors(), "ThatSquidYT;Dejjiiii;andigalpern;DesignUXUI;jack");
-	}
 
-	void testTextAppearsOnThread(Tester t) {
-		t.checkExpect(this.t1.textAppearsOnThread("joepolitz"), false);
-		t.checkExpect(this.t1.textAppearsOnThread("2022"), false);
-		t.checkExpect(this.t1.textAppearsOnThread("cool"), true);
-		t.checkExpect(this.t4.textAppearsOnThread("wonder"), true);
-		t.checkExpect(this.t4.textAppearsOnThread("Java"), true);
-		t.checkExpect(this.t4.textAppearsOnThread("rewrite"), false);
-		t.checkExpect(this.t4.textAppearsOnThread("2022"), true);
-
-		// additional testing
+		// textAppearsOnThread
 		t.checkExpect(this.tweet1.textAppearsOnThread(""), true);
 		t.checkExpect(this.tweet2.textAppearsOnThread("@"), true);
 	}

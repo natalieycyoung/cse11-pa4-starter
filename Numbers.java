@@ -255,14 +255,9 @@ class ExamplesNumbers
 	Number twoTenths = new Fraction(2,10);
 	Number threeTenths = new Fraction(3,10);
 
-/*	void testToDouble(Tester t)
-	{
-		t.checkExpect(this.oneTenth.add(twoTenths).add(threeTenths).toDouble(), 0.6);
-	}
-*/
-	double explor1 = oneTenth.add(twoTenths).add(threeTenths).toDouble();
-	double explor2 = oneTenth.add(twoTenths.add(threeTenths)).toDouble();
+	// 0.1 + 0.2 + 0.3
 	String explor3 = oneTenth.add(twoTenths).add(threeTenths).toText();
+	// 0.1 + (0.2 + 0.3)
 	String explor4 = oneTenth.add(twoTenths.add(threeTenths)).toText();
 
 }

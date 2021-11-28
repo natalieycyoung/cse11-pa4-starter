@@ -1,0 +1,98 @@
+$ ./run.bat ExamplesTweets
+Tester Library v.3.0
+-----------------------------------
+Tests defined in the class: ExamplesTweets:
+---------------------------
+ExamplesTweets:
+---------------
+new ExamplesTweets:1(
+ this.joe = new User:2(
+  this.userName = "joepolitz"
+  this.displayName = "Joe Gibbs Politz"
+  this.numberOfFollowers = 999)
+ this.greg = new User:3(
+  this.userName = "gregory_miranda"
+  this.displayName = "Greg Miranda"
+  this.numberOfFollowers = 9999)
+ this.rachel = new User:4(
+  this.userName = "Rachel__Lim"
+  this.displayName = "Rachel Lim"
+  this.numberOfFollowers = 1000000)
+ this.t1 = new TextTweet:5(
+  this.author = User:2
+  this.contents = "Java 17 has a cool feature called records"
+  this.likes = 77)
+ this.t2 = new ReplyTweet:6(
+  this.author = User:3
+  this.contents = "Hmm I wonder if we could use it for CSE11"
+  this.likes = 12
+  this.replyTo = TextTweet:5)
+ this.t3 = new ReplyTweet:7(
+  this.author = User:3
+  this.contents = "Thought about this more, probably not yet, too new."
+  this.likes = 73
+  this.replyTo = ReplyTweet:6)
+ this.t4 = new ReplyTweet:8(
+  this.author = User:2
+  this.contents = "Yeah, good point. Maybe in 2022."
+  this.likes = 10
+  this.replyTo = ReplyTweet:7)
+ this.t5 = new ReplyTweet:9(
+  this.author = User:4
+  this.contents = "Yeah... I don't want to rewrite the book right this minute"
+  this.likes = 1005
+  this.replyTo = ReplyTweet:6)
+ this.jack = new User:10(
+  this.userName = "jack"
+  this.displayName = "Jack Dorsey"
+  this.numberOfFollowers = 4000000)
+ this.jon = new User:11(
+  this.userName = "DesignUXUI"
+  this.displayName = "Jonathan Shariat"
+  this.numberOfFollowers = 18700)
+ this.andi = new User:12(
+  this.userName = "andigalpern"
+  this.displayName = "Andi Galpern"
+  this.numberOfFollowers = 8016)
+ this.king = new User:13(
+  this.userName = "Dejjiiii"
+  this.displayName = "King."
+  this.numberOfFollowers = 1733)
+ this.calamar = new User:14(
+  this.userName = "ThatSquidYT"
+  this.displayName = "ese calamar"
+  this.numberOfFollowers = 466)
+ this.tweet1 = new TextTweet:15(
+  this.author = User:10
+  this.contents = "just setting up my twttr"
+  this.likes = 171700)
+ this.tweet2 = new ReplyTweet:16(
+  this.author = User:11
+  this.contents = "Wow just over 6 years ago @jack wrote this..."
+  this.likes = 7
+  this.replyTo = TextTweet:15)
+ this.tweet3 = new ReplyTweet:17(
+  this.author = User:12
+  this.contents = "Now 12 years ago!"
+  this.likes = 20
+  this.replyTo = ReplyTweet:16)
+ this.tweet4 = new ReplyTweet:18(
+  this.author = User:13
+  this.contents = "Now 14."
+  this.likes = 7
+  this.replyTo = ReplyTweet:17)
+ this.tweet5 = new ReplyTweet:19(
+  this.author = User:14
+  this.contents = "14 and a half."
+  this.likes = 0
+  this.replyTo = ReplyTweet:18))
+---------------
+
+Ran 27 tests.
+All tests passed.
+
+--- END OF TEST RESULTS ---
+WARNING: A terminally deprecated method in java.lang.System has been called
+WARNING: System::setSecurityManager has been called by tester.Main (file:/C:/Users/nyoung/UCSD/CSE11/cse11-pa4-starter/lib/tester.jar)
+WARNING: Please consider reporting this to the maintainers of tester.Main
+WARNING: System::setSecurityManager will be removed in a future release
